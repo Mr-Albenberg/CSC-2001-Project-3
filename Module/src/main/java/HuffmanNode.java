@@ -30,8 +30,23 @@ public record HuffmanNode(int charAscii, int freq, HuffmanNode left, HuffmanNode
      * with the smaller ASCII value comes first.
      */
     public static boolean comesBefore(HuffmanNode a, HuffmanNode b) {
-        // TODO: implement
-        return false;
+
+        if(a.freq < b.freq){
+            return true;
+        }else if(b.freq > a.freq){
+            return false;
+        }else if(a.freq == b.freq){
+            if(a.charAscii < b.charAscii){
+                return true;
+            }else if(b.charAscii < a.charAscii){
+                return false;
+            }else{
+                throw new IllegalArgumentException("Duplicate characters detected");
+            }
+        }else{
+            throw new IllegalArgumentException("Comparison issue");
+        }
+
     }
 
     /**
@@ -44,8 +59,20 @@ public record HuffmanNode(int charAscii, int freq, HuffmanNode left, HuffmanNode
      * of a's and b's charAscii values (used to break ties later on).
      */
     public static HuffmanNode combine(HuffmanNode a, HuffmanNode b) {
-        // TODO: implement
-        return null;
+
+        if(comesBefore(a,b) && a.charAscii < b.charAscii){
+            return new HuffmanNode(a.charAscii,a.freq+b.freq,a,b);
+        }else if(comesBefore(a,b) && b.charAscii < a.charAscii){
+            return new HuffmanNode(b.charAscii,a.freq+b.freq,a,b);
+
+        }else if(comesBefore(b,a) && a.charAscii < b.charAscii){
+            return new HuffmanNode(a.charAscii,a.freq+b.freq,b,a);
+        }else if(comesBefore(b,a) && b.charAscii < a.charAscii){
+            return new HuffmanNode(b.charAscii,a.freq+b.freq,b,a);
+        }else{
+            throw new IllegalArgumentException("Combining issue");
+        }
+
     }
 
     /**

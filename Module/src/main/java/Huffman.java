@@ -49,7 +49,14 @@ public class Huffman {
      * PriorityQueue. How you implement this method depends on which you pick.
      */
     public static void addNode(Collection<HuffmanNode> collection, HuffmanNode node) {
-        // TODO: implement
+        /*
+        for(int i = 0; i < collection.size(); i++){
+            if (node.freq() < collection[i].freq()){
+                collection
+            }
+        }
+        */
+
     }
 
     /**
